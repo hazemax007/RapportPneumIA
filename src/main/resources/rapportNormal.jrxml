@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rapportMedicalMulti" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="934a001b-fdb1-40a0-ad5f-a11de0bc3698">
+	<subDataset name="chartDataSet" uuid="119b7f0e-01ef-4e2b-b628-d76f51e83768">
+		<field name="serie" class="java.lang.String"/>
+		<field name="category" class="java.lang.String"/>
+		<field name="value" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="Abnormality" class="java.lang.Double"/>
+	<parameter name="Scan" class="java.awt.Image"/>
+	<parameter name="chartBeanParam4" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="802">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image scaleImage="FillFrame">
+				<reportElement x="-20" y="-20" width="595" height="401" uuid="f9443db6-dac1-40cd-9f0c-a3de069fdb6b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/Users/hazem/Downloads/Image_002.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="-10" y="120" width="281" height="41" forecolor="#175E29" uuid="2cf7e1db-03e2-412b-99dd-dad949d1d074"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="OCR A Extended" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rapport pneum IA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="120" width="236" height="51" forecolor="#EBEBEB" uuid="1d6c9d54-8a14-4e8d-bf6d-7626e91b3a3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Multi pathologie CXR screening]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-11" y="180" width="231" height="20" forecolor="#EBEBEB" uuid="219b6ffe-e0c0-4fc9-b982-e7817ca96651"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Information patient]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="360" width="230" height="20" forecolor="#EBEBEB" uuid="7f2b8381-53c4-4afb-b3d8-05a3d0013ffc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sexe : Homme]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-11" y="210" width="231" height="20" forecolor="#EBEBEB" uuid="b0724845-745a-4e75-971c-d471120432b4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Num sécurité sociale : 1236589462346153]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="240" width="230" height="20" forecolor="#EBEBEB" uuid="58c014c0-6cc1-470f-b99b-cb7204837d6b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nom : Ben Salem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="270" width="230" height="20" forecolor="#EBEBEB" uuid="8ebbca0d-2ac9-4dfe-a201-188b8069ba22"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Prénom : Hazem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="300" width="230" height="20" forecolor="#EBEBEB" uuid="8e6a8006-ccf3-477d-93c5-2fdb1de62235"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Date de naissance : 1997-12-18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-10" y="330" width="230" height="20" forecolor="#EBEBEB" uuid="e24d2f93-835c-45fb-83a4-93a61ad72afe"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Age : 24]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="180" width="231" height="20" forecolor="#EBEBEB" uuid="743dbabc-a2e4-4f3c-b481-f8f1c6ce7d6a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Information Dépistage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="210" width="231" height="20" forecolor="#EBEBEB" uuid="64f511bf-9ef5-4412-a147-2b5c82ce4c09"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Num d'examen : 4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="240" width="231" height="20" forecolor="#EBEBEB" uuid="b481b3e7-86fe-435c-9bf0-7a3fcc4c882b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Num de dossier : 6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="270" width="231" height="20" forecolor="#EBEBEB" uuid="dde0b218-71ca-4947-89c1-3f51edd9ae8e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Modalité : CXR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="300" width="231" height="20" forecolor="#EBEBEB" uuid="1f3c88d3-8fe6-41fb-8c68-374de44d49b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Parie du corps examinée : Chest]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="330" width="231" height="20" forecolor="#EBEBEB" uuid="20669780-8dfb-45bd-abb6-1062e9c221ed"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date : 2022-08-10-8H-30-47]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="360" width="231" height="20" forecolor="#EBEBEB" uuid="13e94d78-0536-4407-94f4-a916cba43146"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Position de vue : PA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="410" width="160" height="30" uuid="36182cc6-002f-48da-8b1a-d34f674fa7bb">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Analyse générale]]></text>
+			</staticText>
+			<rectangle radius="8">
+				<reportElement x="80" y="500" width="400" height="110" backcolor="#EDEDED" uuid="0428483f-a399-4b9d-9625-beee662893c6">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Dotted" lineColor="#BFBFBF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="100" y="520" width="100" height="30" uuid="370b8125-3bc7-441f-a2d0-0e8bd3870116"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Qualité image]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="560" width="100" height="30" uuid="d4f715a0-7ba3-4f37-9332-03d46522f0a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Anomalité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="520" width="100" height="30" uuid="7af0b0e2-b75e-48e7-9f31-27fc16e3ebd1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="560" width="100" height="30" forecolor="#338F3E" uuid="f5bc4ae1-71c9-4236-a536-b7d70b20c306"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Négative]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="520" width="100" height="30" uuid="0b699f22-9859-4437-8f86-ed0ce2cb48b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Acceptée]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="680" width="400" height="30" uuid="c42e9d38-c0fb-4f28-9d82-707670f1451e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Aucune pathologie n'a été détectée]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="560" width="100" height="30" uuid="1b0d2578-8b06-45c5-a6b6-3d1913b9958f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Abnormality}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="802">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="181" y="34" width="199" height="30" uuid="648c48d8-64f5-41ff-96ad-608a7b05bfb3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Détail pathologie]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="40" y="110" width="188" height="50" backcolor="#EDEDED" uuid="5584af5f-ba2c-491a-a51c-e31602a547b4"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineColor="#BFBFBF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="55" y="120" width="158" height="30" uuid="3521c1a8-162c-4ecc-aec8-e6efa4ba8d53"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Scan de patient]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="327" y="110" width="188" height="50" backcolor="#EDEDED" uuid="996bb554-323f-467a-89c5-f2c973e25b7c"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineColor="#BFBFBF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="342" y="120" width="158" height="30" uuid="626cca02-8a80-4ec8-85e8-f5e17fd1818b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="500" width="280" height="30" uuid="eaaff49a-b642-4a7a-ae27-6c02fa60c0de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Détail de la détection de pulmonaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="560" width="550" height="190" uuid="e87ec0ee-2059-4d5f-a1fb-56c1a8d6fc4c"/>
+				<textElement textAlignment="Left">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Des pathologies pulmonaires sont détectés.
+- Stade : Indefinie.
+Patient à adresser sans tarder à le radiologue pour avis médical, ced'autant
+plus urgemment qu'ilprésente des signes fonctionnels d'alerte (essoufflement,
+poumons qui crépitent (bronchite chronique obstructive) ou qui sifflent
+(asthme) à l'auscultation, bronchite qui s'aggrave alors qu'elle aurait dû être
+complètement guérie en dix jours.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="20" y="200" width="220" height="220" uuid="950e8fbe-edd3-44bd-bf98-bca7b9ce343e"/>
+				<imageExpression><![CDATA[$P{Scan}]]></imageExpression>
+			</image>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="280" y="200" width="270" height="220" uuid="f6a1b8ab-ab55-47f2-84ac-83fa0bb89743"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report">
+						<datasetRun subDataset="chartDataSet" uuid="8ffbc191-64a8-4eb1-a530-724486929ff6">
+							<dataSourceExpression><![CDATA[$P{chartBeanParam4}]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<keyExpression><![CDATA[$F{serie}]]></keyExpression>
+					<valueExpression><![CDATA[$F{value}]]></valueExpression>
+					<labelExpression><![CDATA[$F{value}+""]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</detail>
+</jasperReport>
