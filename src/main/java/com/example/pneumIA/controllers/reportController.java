@@ -1,19 +1,18 @@
 package com.example.pneumIA.controllers;
 
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
-
+import java.util.Base64;
+import javax.xml.bind.DatatypeConverter;
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,22 +34,19 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.pneumIA.models.ChartModel;
 import com.example.pneumIA.models.TableModel;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.google.gson.Gson;
 
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
+
+
 
 @RestController
 public class reportController {
@@ -61,9 +57,7 @@ public class reportController {
 	public JsonNode binaryPrediction(@RequestParam("xray") MultipartFile file) throws IOException {
         // load file from /src/test/resources
         byte[] fileContent = file.getBytes();
-        String encodedString = Base64
-          .getEncoder()
-          .encodeToString(fileContent);
+        String encodedString = Base64.getEncoder().encodeToString(fileContent);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         MultiValueMap<String, Object> body
@@ -88,9 +82,7 @@ public class reportController {
 	public JsonNode multiPrediction(@RequestParam("xray") MultipartFile file) throws IOException {
         // load file from /src/test/resources
         byte[] fileContent = file.getBytes();
-        String encodedString = Base64
-          .getEncoder()
-          .encodeToString(fileContent);
+        String encodedString = Base64.getEncoder().encodeToString(fileContent);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         MultiValueMap<String, Object> body
@@ -115,9 +107,7 @@ public class reportController {
 	public JsonNode imageCheck(@RequestParam("xray") MultipartFile file) throws IOException {
         // load file from /src/test/resources
         byte[] fileContent = file.getBytes();
-        String encodedString = Base64
-          .getEncoder()
-          .encodeToString(fileContent);
+        String encodedString = Base64.getEncoder().encodeToString(fileContent);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         MultiValueMap<String, Object> body
@@ -140,16 +130,13 @@ public class reportController {
     }
 	
 	@PostMapping("/heatMap")
-	public ResponseEntity<byte[]> heatMap(@RequestParam("xray") MultipartFile file) throws IOException {
+	public JsonNode heatMap(@RequestParam("xray") MultipartFile file) throws IOException {
         // load file from /src/test/resources
         byte[] fileContent = file.getBytes();
-        String encodedString = Base64
-          .getEncoder()
-          .encodeToString(fileContent);
+        String encodedString = Base64.getEncoder().encodeToString(fileContent);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-        MultiValueMap<String, Object> body
-        = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("xray", encodedString);
         
         HttpEntity<MultiValueMap<String, Object>> requestEntity
@@ -158,8 +145,8 @@ public class reportController {
        String serverUrl = "http://10.10.10.27:8000/api/generate_pathologie_heatmap/";
 
        RestTemplate restTemplate = new RestTemplate();
-       ResponseEntity<byte[]> response = restTemplate
-         .postForEntity(serverUrl, requestEntity, byte[].class);
+       JsonNode response = restTemplate
+         .postForObject(serverUrl, requestEntity, JsonNode.class);
         
         return response;   
     }
@@ -198,7 +185,7 @@ public class reportController {
 				new TypeReference<HashMap<String, Double>>(){}); 
 		List<String> pathologies = chart1.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
 		//byte[] visionIA = heatMap(xray).getBody().getBytes(StandardCharsets.UTF_8);
-		byte[] imageIA = heatMap(xray).getBody();
+		//byte[] imageIA = heatMap(xray).getBody();
 		//List<String> pathologie = new ArrayList<String>(chart.entrySet().stream().map(Map.Entry::getKey).collect(Collectors.toList()));
 		//List<Double> v = new ArrayList<Double>(chart.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList()));
 		List<TableModel> listTm = new ArrayList<TableModel>();
@@ -243,7 +230,16 @@ public class reportController {
 		chart3.entrySet().removeIf(entry -> (keyy == entry.getKey()));
 		String keyyy = Collections.max(chart3.entrySet(), Map.Entry.comparingByValue()).getKey();
 		chart3.entrySet().removeIf(entry -> (keyyy == entry.getKey()));
-		Double maxValueInMap3 = Collections.max(chart3.values()); 
+		Double maxValueInMap3 = Collections.max(chart3.values());
+		String image1 = heatMap(xray).get("data").get("heatmap_path_1").toString();
+		String imageIA1 = image1.split(",")[1];
+		byte[] decodedImage1 = DatatypeConverter.parseBase64Binary(imageIA1);
+		String image2 = heatMap(xray).get("data").get("heatmap_path_2").toString();
+		String imageIA2 = image2.split(",")[1];
+		byte[] decodedImage2 = DatatypeConverter.parseBase64Binary(imageIA2);
+		String image3 = heatMap(xray).get("data").get("heatmap_path_3").toString();
+		String imageIA3 = image3.split(",")[1];
+		byte[] decodedImage3 = DatatypeConverter.parseBase64Binary(imageIA3);
 		
 		 //Map.Entry<String, Double> max1 = null;
 		 //Map.Entry<String, Double> max2 = null;
@@ -274,7 +270,9 @@ public class reportController {
 		Map<String, Object> Params = new HashMap<String, Object>();
 		Params.put("Abnormality", anormalePredict);
 		Params.put("Scan", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(xray.getResource().getInputStream()))));
-		Params.put("imageIA", ImageIO.read(new ByteArrayInputStream(imageIA)));
+		Params.put("imageIA1", ImageIO.read(new ByteArrayInputStream(decodedImage1)));
+		Params.put("imageIA2", ImageIO.read(new ByteArrayInputStream(decodedImage2)));
+		Params.put("imageIA3", ImageIO.read(new ByteArrayInputStream(decodedImage3)));
 		Params.put("pathologies",pathologies);
 		Params.put("CollectionBeanParam",new JRBeanCollectionDataSource(listTm));
 		Params.put("chartBeanParam",new JRBeanCollectionDataSource(listCm));
@@ -318,23 +316,11 @@ public class reportController {
 	}
 	
 	@GetMapping("/test")
-	public double test(@RequestParam("xray") MultipartFile xray) throws IOException {
-		//ArrayList a = (ArrayList<String>) multiPrediction(xray).get("data").get("Multi pthologies predction").fieldNames();
-		HashMap<String, Double> hash = new ObjectMapper().convertValue(
-				multiPrediction(xray).get("data").get("Multi pthologies predction"), 
-				new TypeReference<HashMap<String, Double>>(){});
-		List<String> keys = new ArrayList<String>(hash.keySet());
-		List<Double> values = new ArrayList<Double>(hash.values());
-		//List<Comparable<String>> keys = hash.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed()).limit(3).map(Map.Entry::getKey).collect(Collectors.toList());
-		//String[] keys = (String[]) hash.keySet().toArray();
-		//Iterator<Double> it = values.iterator();
-		//while(it.hasNext())
-			//return it.next();
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode multiP = multiPrediction(xray).get("data").get("Multi pthologies predction");
-		Collection<HashMap<String, ?>> chart = mapper.convertValue(multiP, 
-				new TypeReference<Collection<HashMap<String, ?>>>(){});
-		return Math.floor(multiPrediction(xray).get("data").get("Multi pthologies predction").get("Cardiomegalie").asDouble() * 10000)/100 ;
+	public byte[] test(@RequestParam("xray") MultipartFile xray) throws IOException {
+		String imageIA = heatMap(xray).get("data").get("heatmap_path_2").toString();
+		String image = imageIA.split(",")[1];
+		byte[] decodedBytes = DatatypeConverter.parseBase64Binary(image);
+		return decodedBytes;
 		
 	}
 
